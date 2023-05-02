@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useEffect } from "react";
 import PhotoIcon from "@heroicons/react/24/solid/PhotoIcon";
 
 function Dropzone({
@@ -17,6 +17,31 @@ function Dropzone({
     };
     reader.readAsDataURL(file);
   }
+
+  // useEffect(() => {
+  //   function handlePaste(event: ClipboardEvent) {
+  //     const item = event.clipboardData?.items[0];
+
+  //     if (!item) {
+  //       return;
+  //     }
+
+  //     console.log(item);
+  //     if (item.kind === "file" && item.type.match("image/*")) {
+  //       const image = item.getAsFile();
+  //       if (image) {
+  //         setImage(image.toString());
+  //       }
+  //       console.log(image);
+  //     }
+  //   }
+
+  //   document.addEventListener("paste", handlePaste);
+
+  //   return () => {
+  //     document.removeEventListener("paste", handlePaste);
+  //   };
+  // }, []);
 
   return (
     <div className="rounded-md border-2 border-dashed p-4 py-8 relative flex justify-center items-center bg-slate-900 hover:bg-slate-800 hover:transition min-h-[20rem]">
