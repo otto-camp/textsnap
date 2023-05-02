@@ -8,6 +8,7 @@ export const metadata = {
   title: "TextSnap - Convert Images to Text",
   description:
     "TextSnap is a free online tool that allows you to easily convert images to editable text. Simply upload your image and we'll do the rest!",
+  verification: { google: "qTg1GnJ7TKpojUr1jO5HHEGOSvc6aVrBFzv2cdFwEvM" },
   keywords:
     "OCR, text recognition, image to text, convert image to text, free OCR tool",
   robots: {
