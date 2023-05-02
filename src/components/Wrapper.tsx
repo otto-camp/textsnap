@@ -11,8 +11,10 @@ function Wrapper() {
   const [error, setError] = useState<string>("");
 
   return (
-    <>
-      <div className="max-w-7xl mx-auto mb-8">{error ? <Error error={error} /> : ""}</div>
+    <div className="p-4 flex-1">
+      <div className="max-w-7xl mx-auto mb-8">
+        {error ? <Error error={error} /> : ""}
+      </div>
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-4">
         <div className="w-full">
           <Ocr
@@ -22,13 +24,10 @@ function Wrapper() {
           />
         </div>
         <div className="w-full">
-          <TextContainer
-            loading={loading}
-            text={imageText}
-          />
+          <TextContainer loading={loading} text={imageText} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

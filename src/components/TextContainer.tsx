@@ -14,7 +14,7 @@ function TextContainer({ loading, text }: { loading: boolean; text: string }) {
   }
 
   return (
-    <div className="w-full border-2 rounded-md min-h-[20rem] p-4 lg:max-w-xl">
+    <div className="w-full border-2 rounded-md min-h-[20rem] p-4 lg:max-w-xl lg:ml-auto">
       {isCopied ? (
         <div className="bg-gray-700 text-center p-4 rounded-md">Copied</div>
       ) : (
@@ -46,7 +46,7 @@ function TextContainer({ loading, text }: { loading: boolean; text: string }) {
       ) : (
         <div className="relative">
           <CopyToClipboard text={text} onCopy={handleCopyAlert}>
-            <button className="absolute -right-3 -top-3 text-base px-2 py-2 text-center whitespace-nowrap inline-flex justify-center items-center space-x-2 hover:brightness-110 transition-all rounded-full active:brightness-90 bg-blue-950">
+            <button aria-label="copy to clipboard" className="absolute -right-3 -top-3 text-base px-2 py-2 text-center whitespace-nowrap inline-flex justify-center items-center space-x-2 hover:brightness-110 transition-all rounded-full active:brightness-90 bg-blue-950">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

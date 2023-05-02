@@ -50,6 +50,7 @@ function Dropzone({
         onChange={(e) => handleImageChange(e)}
         accept="image/*"
         type="file"
+        aria-label="image"
         className="w-full absolute inset-0 z-[1] opacity-0 cursor-pointer"
       />
       <div className="flex flex-col justify-center items-center text-center gap-1">
