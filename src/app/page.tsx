@@ -12,7 +12,11 @@ export default function Home() {
           TextSnap
         </Link>
       </nav>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-center py-4 md:py-8 font-bold">
+        Convert Images to Editable Text
+      </h1>
       <Wrapper />
+
       <footer className="flex justify-center items-center border-t p-4">
         <Link aria-label="github" href="https://github.com/otto-camp">
           <svg

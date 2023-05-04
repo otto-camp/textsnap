@@ -53,10 +53,11 @@ function Dropzone({
         aria-label="image"
         className="w-full absolute inset-0 z-[1] opacity-0 cursor-pointer"
       />
-      <div className="flex flex-col justify-center items-center text-center gap-1">
+      <div className="grid items-center text-center gap-1">
         <PhotoIcon />
         <strong>Upload a file</strong>
-        or drag and drop
+        <span>or drag and drop</span>
+        <strong>or paste directly</strong>
       </div>
     </div>
   );
