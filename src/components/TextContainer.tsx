@@ -63,7 +63,7 @@ function TextContainer({ loading, text }: { loading: boolean; text: string }) {
               </svg>
             </button>
           </CopyToClipboard>
-          <p>{text}</p>
+          <p data-test="text">{text}</p>
         </div>
       )}
     </div>
