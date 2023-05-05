@@ -21,7 +21,7 @@ function Ocr({
         setError("");
       } else {
         setLoading(true);
-        Tesseract.recognize(image, "eng", {
+        Tesseract.recognize(image, "eng+tur", {
           logger: (m) => {
             console.log(m);
           },
