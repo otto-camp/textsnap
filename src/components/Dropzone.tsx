@@ -2,24 +2,48 @@ import { ChangeEvent, Dispatch, SetStateAction, useEffect } from "react";
 import PhotoIcon from "@heroicons/react/24/solid/PhotoIcon";
 
 function Dropzone({
+  setLoading,
+  setText,
+  setError,
   setImage,
 }: {
-  setImage: Dispatch<SetStateAction<string | Buffer | null>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+  setText: Dispatch<SetStateAction<string>>;
+  setError: Dispatch<SetStateAction<string>>;
+  setImage: Dispatch<SetStateAction<File | null>>;
 }) {
-  function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
+  const backend = process.env.NEXT_PUBLIC_BACKEND_URL
+    ? process.env.NEXT_PUBLIC_BACKEND_URL
+    : "http://localhost:5000";
+
+  async function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files![0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const imageDataUri = reader.result as string;
-      // console.log({ imageDataUri });
-      setImage(imageDataUri);
-    };
-    reader.readAsDataURL(file);
+    const formData = new FormData();
+    formData.append("image", file);
+
+    setLoading(true);
+    setImage(file);
+
+    await fetch(backend, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => {
+        res.text().then((text) => {
+          setText(text);
+        });
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err);
+        setLoading(false);
+      });
   }
 
   useEffect(() => {
-    function handlePaste(event: ClipboardEvent) {
+    async function handlePaste(event: ClipboardEvent) {
       const item = event.clipboardData?.items[0];
       if (!item) {
         return;
@@ -29,12 +53,27 @@ function Dropzone({
         // console.log("matched");
         const file = item.getAsFile();
         if (file) {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-            const str = reader.result as string;
-            setImage(str);
-          };
+          const formData = new FormData();
+          formData.append("image", file);
+
+          setLoading(true);
+          setImage(file);
+
+          await fetch(backend, {
+            method: "POST",
+            body: formData,
+          })
+            .then((res) => {
+              res.text().then((text) => {
+                setText(text);
+              });
+              setLoading(false);
+            })
+            .catch((err) => {
+              console.error(err);
+              setError(err);
+              setLoading(false);
+            });
         }
       }
     }
@@ -42,6 +81,7 @@ function Dropzone({
     return () => {
       document.removeEventListener("paste", handlePaste);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

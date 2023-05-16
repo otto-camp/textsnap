@@ -11,7 +11,7 @@ function TextContainer({ loading, text }: { loading: boolean; text: string }) {
     setTimeout(() => {
       setIsCopied(false);
     }, 2000);
-  }
+  } 
 
   return (
     <div className="w-full border-2 rounded-md min-h-[20rem] p-4 lg:max-w-xl lg:ml-auto">
