@@ -55,10 +55,12 @@ function Dropzone({
 
           setLoading(true);
           setImage(file);
-
+          
+          console.time("Response Timer");
           await fetch(backend, {
             method: "POST",
             body: formData,
+            mode: "cors",
           })
             .then((res) => {
               res.text().then((text) => {
@@ -71,6 +73,7 @@ function Dropzone({
               setError(err);
               setLoading(false);
             });
+          console.timeEnd("Response Timer");
         }
       }
     }
