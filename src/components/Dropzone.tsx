@@ -12,9 +12,7 @@ function Dropzone({
   setError: Dispatch<SetStateAction<string>>;
   setImage: Dispatch<SetStateAction<File | null>>;
 }) {
-  const backend = process.env.NEXT_PUBLIC_BACKEND_URL
-    ? process.env.NEXT_PUBLIC_BACKEND_URL
-    : "http://localhost:5000";
+  const backend = process.env.NEXT_PUBLIC_BACKEND_URL!;
 
   async function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files![0];
