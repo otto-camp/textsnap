@@ -22,10 +22,11 @@ function Dropzone({
 
     setLoading(true);
     setImage(file);
-
+    console.time("Response Timer");
     await fetch(backend, {
       method: "POST",
       body: formData,
+      mode: "cors",
     })
       .then((res) => {
         res.text().then((text) => {
@@ -34,10 +35,10 @@ function Dropzone({
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
         setError(err);
         setLoading(false);
       });
+    console.timeEnd("Response Timer");
   }
 
   useEffect(() => {
@@ -46,9 +47,7 @@ function Dropzone({
       if (!item) {
         return;
       }
-      // console.log(item);
       if (item.kind === "file" && item.type.match("image/*")) {
-        // console.log("matched");
         const file = item.getAsFile();
         if (file) {
           const formData = new FormData();
