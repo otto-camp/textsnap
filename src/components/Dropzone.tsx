@@ -12,11 +12,13 @@ function Dropzone({
   setText,
   setError,
   setImage,
+  language,
 }: {
   setLoading: Dispatch<SetStateAction<boolean>>;
   setText: Dispatch<SetStateAction<string>>;
   setError: Dispatch<SetStateAction<string>>;
   setImage: Dispatch<SetStateAction<File | null>>;
+  language: string;
 }) {
   const backend = process.env.NEXT_PUBLIC_BACKEND_URL!;
   const [imageUrl, setImageUrl] = useState("");
@@ -30,7 +32,7 @@ function Dropzone({
     setLoading(true);
     setImage(file);
     console.time("Response Timer");
-    await fetch(backend + "eng/image", {
+    await fetch(backend + language + "/image", {
       method: "POST",
       body: formData,
       mode: "cors",
@@ -60,7 +62,7 @@ function Dropzone({
     console.time("Response Timer");
     console.log(imageUrl);
 
-    await fetch(backend + "eng/image-url", {
+    await fetch(backend + language + "/image-url", {
       method: "POST",
       body: JSON.stringify({ url }),
       headers: {
@@ -103,7 +105,7 @@ function Dropzone({
           setImage(file);
 
           console.time("Response Timer");
-          await fetch(backend + "eng/image", {
+          await fetch(backend + language + "/image", {
             method: "POST",
             body: formData,
             mode: "cors",
