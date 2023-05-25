@@ -6,6 +6,7 @@ import TextContainer from "./TextContainer";
 import Error from "./Error";
 import Dropzone from "./Dropzone";
 import LanguageRadio from "./LanguageRadio";
+import Image from "next/image";
 
 function Wrapper() {
   const [imageText, setImageText] = useState("Waiting for your image...");
@@ -20,6 +21,7 @@ function Wrapper() {
         {error ? <Error error={error} /> : ""}
       </div>
       <div className="max-w-7xl mx-auto flex justify-start gap-4 mb-4">
+        <p className="text-sm">Choose a Language for Image Process:</p>
         <LanguageRadio
           language={language}
           setLanguage={setLanguage}
@@ -43,10 +45,11 @@ function Wrapper() {
             language={language}
           />
           {image ? (
-            <div className="flex flex-col w-full border rounded-md">
-              <img
+            <div className="flex flex-col w-full border relative rounded-md">
+              <Image
                 src={URL.createObjectURL(image)}
                 alt={image.name}
+                fill
                 className="rounded-t-lg"
               />
               <div className="space-x-4 px-4 py-2 ">

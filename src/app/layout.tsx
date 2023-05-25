@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -65,6 +66,19 @@ export default function RootLayout({
       <body className={inter.className + " bg-gray-950 text-white"}>
         {children}
         <Analytics />
+        <Script
+          async
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-NRXG6RMYXN"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {` 
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NRXG6RMYXN');
+            `}
+        </Script>
       </body>
     </html>
   );
