@@ -1,7 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -66,11 +65,6 @@ export default function RootLayout({
       <body className={inter.className + " bg-gray-950 text-white"}>
         {children}
         <Analytics />
-        <Script
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6279613441736847"
-        />
       </body>
     </html>
   );

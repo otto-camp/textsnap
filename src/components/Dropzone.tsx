@@ -30,7 +30,7 @@ function Dropzone({
     setLoading(true);
     setImage(file);
     console.time("Response Timer");
-    await fetch(backend, {
+    await fetch(backend + "eng/image", {
       method: "POST",
       body: formData,
       mode: "cors",
@@ -60,16 +60,14 @@ function Dropzone({
     console.time("Response Timer");
     console.log(imageUrl);
 
-    await fetch(backend + "image-url", {
+    await fetch(backend + "eng/image-url", {
       method: "POST",
-      body: JSON.stringify({url}),
+      body: JSON.stringify({ url }),
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((res) => {
-        console.log(res.status);
-
         if (res.status !== 200) {
           setError(
             "Image could not be converted to text. Are you sure the image is valid."
@@ -105,7 +103,7 @@ function Dropzone({
           setImage(file);
 
           console.time("Response Timer");
-          await fetch(backend, {
+          await fetch(backend + "eng/image", {
             method: "POST",
             body: formData,
             mode: "cors",
@@ -147,7 +145,7 @@ function Dropzone({
         <span>or drag and drop</span>
         <strong>or paste directly</strong>
       </div>
-      {/* <div className="relative z-50 block w-full">
+      <div className="relative z-50 block w-full">
         <input
           type="text"
           aria-label="image url"
@@ -157,11 +155,11 @@ function Dropzone({
         />
         <button
           onClick={() => handleImageUrlChange(imageUrl)}
-          className="absolute right-0 inset-y-0 inline-flex items-center rounded-md bg-indigo-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="absolute right-0 inset-y-0 inline-flex items-center rounded-md bg-zinc-800 px-6 py-2 text-sm font-semibold duration-200 text-white shadow-sm hover:bg-zinc-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-700"
         >
           Send
         </button>
-      </div> */}
+      </div>
     </div>
   );
 }
