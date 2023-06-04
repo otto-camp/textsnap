@@ -2,6 +2,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
+import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -64,7 +66,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + " bg-gray-950 text-white"}>
+        <Navigation />
         {children}
+        <Footer />
         <Analytics />
         <Script
           async

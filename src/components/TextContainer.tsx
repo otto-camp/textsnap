@@ -14,7 +14,7 @@ function TextContainer({ loading, text }: { loading: boolean; text: string }) {
   }
 
   return (
-    <div className="w-full border-2 rounded-md min-h-[20rem] h-full p-4 lg:max-w-xl lg:ml-auto">
+    <div className="w-full border-2 rounded-md min-h-[20rem] h-full p-4">
       {isCopied ? (
         <div className="bg-gray-700 text-center p-4 rounded-md">Copied</div>
       ) : (

@@ -1,11 +1,8 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+"use client";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import PhotoIcon from "@heroicons/react/24/solid/PhotoIcon";
+import { ImageUpload } from "@/lib/ImageUpload";
+import { ImageUrlUpload } from "@/lib/ImageUrlUpload";
 
 function Dropzone({
   setLoading,
@@ -23,73 +20,40 @@ function Dropzone({
   const backend = process.env.NEXT_PUBLIC_BACKEND_URL!;
   const [imageUrl, setImageUrl] = useState("");
 
-  async function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files![0];
-    if (!file) return;
-    const formData = new FormData();
-    formData.append("image", file);
-
-    setLoading(true);
-    setImage(file);
-    console.time("Response Timer");
-    await fetch(backend + language + "/image", {
-      method: "POST",
-      body: formData,
-      mode: "cors",
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          setError(
-            "Image could not be converted to text. Are you sure the image is valid."
-          );
-          setLoading(false);
-        } else {
-          res.text().then((text) => {
-            setText(text);
-          });
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        setError(err);
-        setLoading(false);
-      });
-    console.timeEnd("Response Timer");
-  }
-
-  async function handleImageUrlChange(url: string) {
-    setLoading(true);
-    console.time("Response Timer");
-    console.log(imageUrl);
-
-    await fetch(backend + language + "/image-url", {
-      method: "POST",
-      body: JSON.stringify({ url }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (res.status !== 200) {
-          setError(
-            "Image could not be converted to text. Are you sure the image is valid."
-          );
-          setLoading(false);
-        } else {
-          res.text().then((text) => {
-            setText(text);
-          });
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        setError(err);
-        setLoading(false);
-      });
-    console.timeEnd("Response Timer");
-  }
+  const sessionImageFile = sessionStorage.getItem("imageFile");
+  const sessionImageUrl = sessionStorage.getItem("imageUrl");
 
   useEffect(() => {
+    if (sessionImageFile) {
+      setImageUrl(sessionImageFile);
+      if (imageUrl) {
+        ImageUrlUpload({
+          imageUrl,
+          backend,
+          language,
+          setError,
+          setLoading,
+          setText,
+        });
+        sessionStorage.removeItem("imageFile");
+      }
+    }
+    if (sessionImageUrl) {
+      setImageUrl(sessionImageUrl);
+      if (imageUrl) {
+        ImageUrlUpload({
+          imageUrl,
+          backend,
+          language,
+          setError,
+          setLoading,
+          setText,
+        });
+
+        sessionStorage.removeItem("imageUrl");
+      }
+    }
+
     async function handlePaste(event: ClipboardEvent) {
       const item = event.clipboardData?.items[0];
       if (!item) {
@@ -130,12 +94,22 @@ function Dropzone({
       document.removeEventListener("paste", handlePaste);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [imageUrl, sessionImageFile]);
 
   return (
     <div className="rounded-md border-2 border-dashed p-4 py-8 relative flex flex-col justify-center items-center bg-slate-900 hover:bg-slate-800 hover:transition min-h-[20rem] space-y-4">
       <input
-        onChange={(e) => handleImageChange(e)}
+        onChange={(e) =>
+          ImageUpload({
+            e,
+            setLoading,
+            backend,
+            language,
+            setError,
+            setImage,
+            setText,
+          })
+        }
         accept="image/*"
         type="file"
         aria-label="image"
@@ -156,7 +130,16 @@ function Dropzone({
           className="w-full rounded-lg border-0 py-1.5 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-800 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
         />
         <button
-          onClick={() => handleImageUrlChange(imageUrl)}
+          onClick={() =>
+            ImageUrlUpload({
+              imageUrl,
+              backend,
+              language,
+              setError,
+              setLoading,
+              setText,
+            })
+          }
           className="absolute right-0 inset-y-0 inline-flex items-center rounded-md bg-zinc-800 px-6 py-2 text-sm font-semibold duration-200 text-white shadow-sm hover:bg-zinc-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-700"
         >
           Send
