@@ -13,7 +13,9 @@ export default function CTADropzone() {
     const reader = new FileReader();
     reader.onload = (e) => {
       const imageBase64 = e.target?.result as string;
-      sessionStorage.setItem("imageFile", imageBase64);
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("imageFile", imageBase64);
+      }
 
       router.push("/ocr");
     };
@@ -21,7 +23,9 @@ export default function CTADropzone() {
   };
 
   const handleImageUrl = () => {
-    sessionStorage.setItem("imageUrl", imageUrl);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("imageUrl", imageUrl);
+    }
     router.push("/ocr");
   };
   return (

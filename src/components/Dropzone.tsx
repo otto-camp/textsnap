@@ -20,8 +20,10 @@ function Dropzone({
   const backend = process.env.NEXT_PUBLIC_BACKEND_URL!;
   const [imageUrl, setImageUrl] = useState("");
 
-  const sessionImageFile = sessionStorage.getItem("imageFile");
-  const sessionImageUrl = sessionStorage.getItem("imageUrl");
+  const sessionImageFile =
+    typeof window !== "undefined" && sessionStorage.getItem("imageFile");
+  const sessionImageUrl =
+    typeof window !== "undefined" && sessionStorage.getItem("imageUrl");
 
   useEffect(() => {
     if (sessionImageFile) {

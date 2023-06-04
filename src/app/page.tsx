@@ -12,6 +12,20 @@ export default function Home() {
         </h2>
         <CTA />
       </header>
+      <main className="container mx-auto py-6">
+        <section className="p-4">
+          <h3 className="text-2xl font-bold mb-4">About TextSnap</h3>
+          <p className="text-gray-800">
+            TextSnap is a free online tool that allows you to easily convert
+            images to editable text. Simply upload your image and we&apos;ll do the
+            rest!
+          </p>
+          <div className="mt-8">{/* Insert eye-catching visuals here */}</div>
+          <div className="mt-8">
+            {/* Insert testimonials or user reviews here */}
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
