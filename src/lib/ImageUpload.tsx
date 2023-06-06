@@ -7,11 +7,11 @@ export async function ImageUpload({
   backend,
   language,
   setError,
-  setText,
+  setImageText,
 }: {
   e?: ChangeEvent<HTMLInputElement>;
   setLoading: Dispatch<SetStateAction<boolean>>;
-  setText: Dispatch<SetStateAction<string>>;
+  setImageText: Dispatch<SetStateAction<string>>;
   setError: Dispatch<SetStateAction<string>>;
   setImage: Dispatch<SetStateAction<File | null>>;
   backend: string;
@@ -41,7 +41,7 @@ export async function ImageUpload({
         setLoading(false);
       } else {
         res.text().then((text) => {
-          setText(text);
+          setImageText(text);
         });
         setLoading(false);
       }

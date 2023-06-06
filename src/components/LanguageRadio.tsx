@@ -1,16 +1,13 @@
-import { Dispatch, SetStateAction } from "react";
+import { useOcrContext } from "@/context/OcrContext";
 
 export default function LanguageRadio({
-  language,
-  setLanguage,
   label,
   value,
 }: {
-  language: string;
-  setLanguage: Dispatch<SetStateAction<string>>;
   label: string;
   value: string;
 }) {
+  const { language, setLanguage } = useOcrContext();
   return (
     <label className="flex items-center justify-center gap-2">
       <input

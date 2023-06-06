@@ -1,9 +1,11 @@
 "use client";
 
+import { useOcrContext } from "@/context/OcrContext";
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
-function TextContainer({ loading, text }: { loading: boolean; text: string }) {
+function TextContainer() {
+  const { loading, imageText } = useOcrContext();
   const [isCopied, setIsCopied] = useState(false);
 
   function handleCopyAlert() {
@@ -14,9 +16,9 @@ function TextContainer({ loading, text }: { loading: boolean; text: string }) {
   }
 
   return (
-    <div className="w-full border-2 rounded-md min-h-[20rem] h-full p-4">
+    <div className="w-full border-2 rounded-lg min-h-[20rem] h-full p-4">
       {isCopied ? (
-        <div className="bg-gray-700 text-center p-4 rounded-md">Copied</div>
+        <div className="bg-gray-700 text-center p-4 rounded-lg">Copied</div>
       ) : (
         ""
       )}
@@ -45,7 +47,7 @@ function TextContainer({ loading, text }: { loading: boolean; text: string }) {
         </div>
       ) : (
         <div className="relative">
-          <CopyToClipboard text={text} onCopy={handleCopyAlert}>
+          <CopyToClipboard text={imageText} onCopy={handleCopyAlert}>
             <button
               aria-label="copy to clipboard"
               className="absolute -right-3 -top-3 text-base px-2 py-2 text-center whitespace-nowrap inline-flex justify-center items-center space-x-2 hover:brightness-110 transition-all rounded-full active:brightness-90 bg-blue-950"
@@ -66,7 +68,7 @@ function TextContainer({ loading, text }: { loading: boolean; text: string }) {
               </svg>
             </button>
           </CopyToClipboard>
-          <p data-test="text">{text}</p>
+          <p data-test="text">{imageText}</p>
         </div>
       )}
     </div>

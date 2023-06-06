@@ -6,11 +6,11 @@ export async function ImageUrlUpload({
   backend,
   language,
   setError,
-  setText,
+  setImageText,
 }: {
   imageUrl: string;
   setLoading: Dispatch<SetStateAction<boolean>>;
-  setText: Dispatch<SetStateAction<string>>;
+  setImageText: Dispatch<SetStateAction<string>>;
   setError: Dispatch<SetStateAction<string>>;
   backend: string;
   language: string;
@@ -18,7 +18,6 @@ export async function ImageUrlUpload({
   console.time("Response Timer");
   setLoading(true);
   const url = imageUrl;
-
   await fetch(backend + language + "/image-url", {
     method: "POST",
     body: JSON.stringify({ url }),
@@ -34,7 +33,7 @@ export async function ImageUrlUpload({
         setLoading(false);
       } else {
         res.text().then((text) => {
-          setText(text);
+          setImageText(text);
         });
         setLoading(false);
       }

@@ -28,8 +28,9 @@ export default function CTADropzone() {
     }
     router.push("/ocr");
   };
+
   return (
-    <div className="rounded-md border-2 border-dashed p-4 py-8 relative flex flex-col justify-center items-center bg-slate-900 hover:bg-slate-800 hover:transition min-h-[20rem] space-y-4">
+    <div className="rounded-lg flex-1 border-2 border-dashed p-4 py-8 relative flex flex-col justify-center items-center bg-slate-900 hover:bg-slate-800 hover:transition w-full space-y-4">
       <input
         onChange={(e) => handleImageFile(e)}
         accept="image/*"
@@ -41,7 +42,6 @@ export default function CTADropzone() {
         <PhotoIcon />
         <strong>Upload a file</strong>
         <span>or drag and drop</span>
-        <strong>or paste directly</strong>
       </div>
       <div className="relative z-50 block w-full">
         <input
@@ -53,7 +53,7 @@ export default function CTADropzone() {
         />
         <button
           onClick={handleImageUrl}
-          className="absolute right-0 inset-y-0 inline-flex items-center rounded-md bg-zinc-800 px-6 py-2 text-sm font-semibold duration-200 text-white shadow-sm hover:bg-zinc-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-700"
+          className="absolute -right-1 inset-y-0 inline-flex items-center rounded-lg bg-zinc-800 px-6 py-2 text-sm font-semibold duration-200 text-white shadow-sm hover:bg-zinc-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-700"
         >
           Send
         </button>

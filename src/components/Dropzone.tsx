@@ -1,31 +1,35 @@
 "use client";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PhotoIcon from "@heroicons/react/24/solid/PhotoIcon";
 import { ImageUpload } from "@/lib/ImageUpload";
 import { ImageUrlUpload } from "@/lib/ImageUrlUpload";
+import { ImagePaste } from "@/lib/ImagePaste";
+import { useOcrContext } from "@/context/OcrContext";
 
-function Dropzone({
-  setLoading,
-  setText,
-  setError,
-  setImage,
-  language,
-}: {
-  setLoading: Dispatch<SetStateAction<boolean>>;
-  setText: Dispatch<SetStateAction<string>>;
-  setError: Dispatch<SetStateAction<string>>;
-  setImage: Dispatch<SetStateAction<File | null>>;
-  language: string;
-}) {
+function Dropzone() {
   const backend = process.env.NEXT_PUBLIC_BACKEND_URL!;
   const [imageUrl, setImageUrl] = useState("");
+  const { language, setError, setLoading, setImageText, setImage } =
+    useOcrContext();
 
   const sessionImageFile =
     typeof window !== "undefined" && sessionStorage.getItem("imageFile");
   const sessionImageUrl =
     typeof window !== "undefined" && sessionStorage.getItem("imageUrl");
 
+  function handlePaste(event: ClipboardEvent) {
+    ImagePaste({
+      event,
+      setLoading,
+      setImage,
+      backend,
+      language,
+      setImageText,
+      setError,
+    });
+  }
   useEffect(() => {
+    console.log(language);
     if (sessionImageFile) {
       setImageUrl(sessionImageFile);
       if (imageUrl) {
@@ -35,7 +39,7 @@ function Dropzone({
           language,
           setError,
           setLoading,
-          setText,
+          setImageText,
         });
         sessionStorage.removeItem("imageFile");
       }
@@ -49,67 +53,33 @@ function Dropzone({
           language,
           setError,
           setLoading,
-          setText,
+          setImageText,
         });
 
         sessionStorage.removeItem("imageUrl");
       }
     }
 
-    async function handlePaste(event: ClipboardEvent) {
-      const item = event.clipboardData?.items[0];
-      if (!item) {
-        return;
-      }
-      if (item.kind === "file" && item.type.match("image/*")) {
-        const file = item.getAsFile();
-        if (file) {
-          const formData = new FormData();
-          formData.append("image", file);
-
-          setLoading(true);
-          setImage(file);
-
-          console.time("Response Timer");
-          await fetch(backend + language + "/image", {
-            method: "POST",
-            body: formData,
-            mode: "cors",
-          })
-            .then((res) => {
-              res.text().then((text) => {
-                setText(text);
-              });
-              setLoading(false);
-            })
-            .catch((err) => {
-              console.error(err);
-              setError(err);
-              setLoading(false);
-            });
-          console.timeEnd("Response Timer");
-        }
-      }
-    }
     document.addEventListener("paste", handlePaste);
     return () => {
       document.removeEventListener("paste", handlePaste);
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imageUrl, sessionImageFile]);
+  }, [imageUrl, sessionImageFile, language]);
 
   return (
-    <div className="rounded-md border-2 border-dashed p-4 py-8 relative flex flex-col justify-center items-center bg-slate-900 hover:bg-slate-800 hover:transition min-h-[20rem] space-y-4">
+    <div className="rounded-lg border-2 border-dashed p-4 py-8 relative flex flex-col justify-center items-center bg-slate-900 hover:bg-slate-800 hover:transition min-h-[20rem] space-y-4">
       <input
         onChange={(e) =>
           ImageUpload({
             e,
             setLoading,
+            setImage,
             backend,
             language,
             setError,
-            setImage,
-            setText,
+            setImageText,
           })
         }
         accept="image/*"
@@ -139,10 +109,10 @@ function Dropzone({
               language,
               setError,
               setLoading,
-              setText,
+              setImageText,
             })
           }
-          className="absolute right-0 inset-y-0 inline-flex items-center rounded-md bg-zinc-800 px-6 py-2 text-sm font-semibold duration-200 text-white shadow-sm hover:bg-zinc-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-700"
+          className="absolute -right-1 inset-y-0 inline-flex items-center rounded-lg bg-zinc-800 px-6 py-2 text-sm font-semibold duration-200 text-white shadow-sm hover:bg-zinc-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-700"
         >
           Send
         </button>
