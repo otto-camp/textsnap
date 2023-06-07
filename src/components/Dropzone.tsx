@@ -130,7 +130,7 @@ function Dropzone({
       document.removeEventListener("paste", handlePaste);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [language]);
 
   return (
     <div className="rounded-md border-2 border-dashed p-4 py-8 relative flex flex-col justify-center items-center bg-slate-900 hover:bg-slate-800 hover:transition min-h-[20rem] space-y-4">
