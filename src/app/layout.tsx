@@ -65,7 +65,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className + " bg-gray-950 text-white"}>
+      <body
+        className={
+          inter.className + " bg-background-100 text-text-100 scroll-smooth"
+        }
+      >
         <Navigation />
         {children}
         <Footer />

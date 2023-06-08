@@ -1,6 +1,0 @@
-User-agent: *
-Disallow:
-
-Host: https://textsnap.vercel.app
-
-Sitemap: https://textsnap.vercel.app/sitemap.xml

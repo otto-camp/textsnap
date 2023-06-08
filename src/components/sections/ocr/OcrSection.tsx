@@ -1,6 +1,6 @@
 "use client";
 
-import Dropzone from "@/components/Dropzone";
+import OcrImageUpload from "@/components/OcrImageUpload";
 import Error from "@/components/Error";
 import LanguageRadio from "@/components/LanguageRadio";
 import TextContainer from "@/components/TextContainer";
@@ -21,7 +21,7 @@ export default function OCR() {
         </div>
         <div className="container mx-auto flex flex-col lg:flex-row gap-4">
           <div className="w-full space-y-2">
-            <Dropzone />
+            <OcrImageUpload />
             {image ? (
               <div className="border rounded-lg">
                 <div className="flex flex-col w-full min-h-[20rem] relative">

@@ -5,8 +5,9 @@ import { ImageUpload } from "@/lib/ImageUpload";
 import { ImageUrlUpload } from "@/lib/ImageUrlUpload";
 import { ImagePaste } from "@/lib/ImagePaste";
 import { useOcrContext } from "@/context/OcrContext";
+import Dropzone from "./ui/Dropzone";
 
-function Dropzone() {
+export default function OcrImageUpload() {
   const backend = process.env.NEXT_PUBLIC_BACKEND_URL!;
   const [imageUrl, setImageUrl] = useState("");
   const { language, setError, setLoading, setImageText, setImage } =
@@ -69,9 +70,9 @@ function Dropzone() {
   }, [imageUrl, sessionImageFile, language]);
 
   return (
-    <div className="rounded-lg border-2 border-dashed p-4 py-8 relative flex flex-col justify-center items-center bg-slate-900 hover:bg-slate-800 hover:transition min-h-[20rem] space-y-4">
-      <input
-        onChange={(e) =>
+    <div>
+      <Dropzone
+        func={(e) =>
           ImageUpload({
             e,
             setLoading,
@@ -82,17 +83,7 @@ function Dropzone() {
             setImageText,
           })
         }
-        accept="image/*"
-        type="file"
-        aria-label="image"
-        className="w-full absolute inset-0 z-[1] opacity-0 cursor-pointer"
       />
-      <div className="grid items-center text-center gap-1">
-        <PhotoIcon />
-        <strong>Upload a file</strong>
-        <span>or drag and drop</span>
-        <strong>or paste directly</strong>
-      </div>
       <div className="relative z-50 block w-full">
         <input
           type="text"
@@ -120,5 +111,3 @@ function Dropzone() {
     </div>
   );
 }
-
-export default Dropzone;

@@ -14,13 +14,17 @@
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@radix-ui/react-hover-card": "^1.0.6",
     "@vercel/analytics": "^1.0.0",
     "eslint-config-next": "13.3.4",
     "framer-motion": "^10.12.16",
+    "lucide-react": "^0.240.0",
     "next": "13.3.4",
     "react": "18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.2.0",
+    "tailwind-merge": "^1.13.1",
     "tesseract.js": "^4.0.4",
     "typescript": "5.0.4"
   },
