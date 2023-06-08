@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(50% 50% at 50% 50%,#121212 0,#000 100%)'
+        'gradient-radial': 'radial-gradient(50% 50% at 50% 50%,#1d2226 0,#040607 100%)'
       },
       animation: {
         text: 'text 10s ease infinite',

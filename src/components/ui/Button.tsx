@@ -61,6 +61,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
       disabled={disabled || loading}
       className={twMerge(
         "inline-block",
+        fullWidth && "w-full",
         radius,
         "transition-all duration-200 focus:outline-none",
         buttonVariant,

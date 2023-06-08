@@ -30,7 +30,6 @@ export default function OcrImageUpload() {
     });
   }
   useEffect(() => {
-    console.log(language);
     if (sessionImageFile) {
       setImageUrl(sessionImageFile);
       if (imageUrl) {
@@ -70,7 +69,7 @@ export default function OcrImageUpload() {
   }, [imageUrl, sessionImageFile, language]);
 
   return (
-    <div>
+    <div className="space-y-4">
       <Dropzone
         func={(e) =>
           ImageUpload({

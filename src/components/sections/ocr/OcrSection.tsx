@@ -2,22 +2,22 @@
 
 import OcrImageUpload from "@/components/OcrImageUpload";
 import Error from "@/components/Error";
-import LanguageRadio from "@/components/LanguageRadio";
 import TextContainer from "@/components/TextContainer";
 import { useOcrContext } from "@/context/OcrContext";
 import Image from "next/image";
+import AutoComplete from "@/components/ui/AutoComplete";
 
-export default function OCR() {
-  const { image, error } = useOcrContext();
+export default function OcrSection() {
+  const { image, error, setLanguage } = useOcrContext();
 
   return (
     <main className="min-h-screen flex flex-col">
       <div className="p-4 flex-1">
         <div className="container mx-auto mb-8">{error ? <Error /> : ""}</div>
-        <div className="container mx-auto flex justify-start gap-4 mb-4">
-          <p className="text-sm">Choose a Language for Image Process:</p>
-          <LanguageRadio label="English" value="eng" />
-          <LanguageRadio label="Turkish" value="tur" />
+        <div className="container mx-auto mb-4">
+          <div className="lg:w-1/2">
+            <AutoComplete setLanguage={setLanguage} />
+          </div>
         </div>
         <div className="container mx-auto flex flex-col lg:flex-row gap-4">
           <div className="w-full space-y-2">

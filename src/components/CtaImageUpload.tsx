@@ -5,6 +5,7 @@ import { ChangeEvent, useState } from "react";
 import Button from "./ui/Button";
 import Dropzone from "./ui/Dropzone";
 import Modal from "./ui/Modal";
+import AutoComplete from "./ui/AutoComplete";
 
 export default function CtaImageUpload() {
   const [imageUrl, setImageUrl] = useState("");
@@ -42,6 +43,7 @@ export default function CtaImageUpload() {
         title="With Image"
       >
         <div className="space-y-4 w-full">
+          {/* <AutoComplete setLanguage={}/> */}
           <Dropzone func={handleImageFile} />
           <Button
             fullWidth
@@ -61,13 +63,14 @@ export default function CtaImageUpload() {
         title="With Url"
       >
         <div className="w-full flex flex-col gap-4">
+          {/* <AutoComplete /> */}
           <div className="relative">
             <input
               type="text"
               aria-label="image url"
               onChange={(e) => setImageUrl(e.target.value)}
               placeholder="Enter image url"
-              className="w-full rounded-lg border-0 py-1.5 px-4 text-text-900 ring-2 ring-inset ring-accent-300 placeholder:text-text-800 focus:ring-2 focus:ring-inset focus:ring-slate-600 sm:text-sm sm:leading-6"
+              className="w-full rounded-lg border-0 py-1.5 px-4 text-text-900 ring-2 ring-inset ring-primary-400 placeholder:text-text-800 focus:ring-2 focus:ring-inset focus:ring-primary-400 sm:text-sm sm:leading-6"
             />
             <button
               onClick={handleImageUrl}
