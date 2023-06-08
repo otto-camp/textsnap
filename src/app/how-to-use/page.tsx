@@ -1,3 +1,53 @@
+const title = "How to Use TextSnap - Convert Images to Text Easily";
+const description =
+  "Learn how to use TextSnap, a free online tool that converts images to editable text. Follow these step-by-step instructions to upload an image, view the extracted text, and download or copy it for further use.";
+
+export const metadata = {
+  title: title,
+  description: description,
+  keywords: [
+    "TextSnap",
+    "convert images to text",
+    "OCR",
+    "image to text conversion",
+    "how to use TextSnap",
+    "step-by-step instructions",
+    "image recognition",
+    "optical character recognition",
+    "extract text from images",
+    "image processing",
+    "convert picture to text",
+    "online OCR tool",
+    "text extraction",
+    "editable text from images",
+    "image text converter",
+    "image to ASCII",
+    "scan image to text",
+    "image transcription",
+    "image text recognition",
+    "text recognition software",
+    "text capture from images",
+  ],
+  openGraph: {
+    title: title,
+    description: description,
+    url: "https://textsnap.vercel.app/how-to-use",
+    siteName: "TextSnap",
+    locale: "en-US",
+    type: "website",
+    images: [{ url: "/howtouse.webp", width: 1024, height: 1024 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+    images: {
+      url: "/howtouse.webp",
+      alt: "Convert Images to Text",
+    },
+  },
+};
+
 export default function HowToUse() {
   return (
     <main className="space-y-12 md:space-y-24 py-8 md:py-16">

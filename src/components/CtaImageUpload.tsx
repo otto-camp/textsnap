@@ -36,7 +36,10 @@ export default function CtaImageUpload() {
     <div className="flex items-center justify-center container mx-auto p-4">
       <Modal
         triggerChildren={
-          <Button radius="rounded-l-lg" classNames="hover:bg-primary-400">
+          <Button
+            radius="rounded-l-lg"
+            classNames="hover:bg-primary-400 w-[15rem]"
+          >
             With Image
           </Button>
         }
@@ -56,7 +59,10 @@ export default function CtaImageUpload() {
       </Modal>
       <Modal
         triggerChildren={
-          <Button radius="rounded-r-lg" classNames="hover:bg-primary-400">
+          <Button
+            radius="rounded-r-lg"
+            classNames="hover:bg-primary-400 w-[15rem]"
+          >
             With Url
           </Button>
         }

@@ -41,9 +41,7 @@ export default function OcrSection() {
               ""
             )}
           </div>
-          <div className="w-full">
-            <TextContainer />
-          </div>
+          <TextContainer />
         </div>
       </div>
     </main>
