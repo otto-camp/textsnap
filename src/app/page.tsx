@@ -1,22 +1,22 @@
-import CtaSection from "../components/sections/home/CtaSection";
-import HowToUseSection from "../components/sections/home/HowToUseSection";
+import CtaSection from '../components/sections/home/CtaSection';
+import HowToUseSection from '../components/sections/home/HowToUseSection';
 
 export default function Home() {
   return (
     <div>
-      <header className="container mx-auto text-center space-y-6 mt-8 bg-gradient-radial">
-        <div className="my-12 md:my-16 space-y-4 sm:space-y-8 md:space-y-16">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-black">
+      <header className='container mx-auto mt-8 space-y-6 bg-gradient-radial text-center'>
+        <div className='my-12 space-y-4 sm:space-y-8 md:my-16 md:space-y-16'>
+          <h1 className='text-3xl font-black sm:text-4xl md:text-5xl lg:text-8xl'>
             Convert Images to Text within seconds
           </h1>
-          <p className="sm:text-lg md:text-xl">
+          <p className='sm:text-lg md:text-xl'>
             Effortlessly extract editable text from images using our advanced
             OCR technology.
           </p>
         </div>
         <CtaSection />
       </header>
-      <main className="container mx-auto py-6">
+      <main className='container mx-auto py-6'>
         <HowToUseSection />
       </main>
     </div>

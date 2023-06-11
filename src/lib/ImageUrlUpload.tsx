@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 
 export async function ImageUrlUpload({
   imageUrl,
@@ -15,20 +15,20 @@ export async function ImageUrlUpload({
   backend: string;
   language: string;
 }) {
-  console.time("Response Timer");
+  console.time('Response Timer');
   setLoading(true);
   const url = imageUrl;
-  await fetch(backend + language + "/image-url", {
-    method: "POST",
+  await fetch(backend + language + '/image-url', {
+    method: 'POST',
     body: JSON.stringify({ url }),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   })
     .then((res) => {
       if (res.status !== 200) {
         setError(
-          "Image could not be converted to text. Are you sure the image is valid."
+          'Image could not be converted to text. Are you sure the image is valid.'
         );
         setLoading(false);
       } else {
@@ -42,5 +42,5 @@ export async function ImageUrlUpload({
       setError(err);
       setLoading(false);
     });
-  console.timeEnd("Response Timer");
+  console.timeEnd('Response Timer');
 }

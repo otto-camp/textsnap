@@ -1,4 +1,4 @@
-import { useOcrContext } from "@/context/OcrContext";
+import { useOcrContext } from '@/context/OcrContext';
 
 export default function LanguageRadio({
   label,
@@ -9,9 +9,9 @@ export default function LanguageRadio({
 }) {
   const { language, setLanguage } = useOcrContext();
   return (
-    <label className="flex items-center justify-center gap-2">
+    <label className='flex items-center justify-center gap-2'>
       <input
-        type="radio"
+        type='radio'
         value={language}
         onChange={() => setLanguage(value)}
         checked={language === value}

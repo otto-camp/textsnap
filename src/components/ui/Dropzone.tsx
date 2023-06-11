@@ -1,20 +1,21 @@
-import PhotoIcon from "@heroicons/react/24/solid/PhotoIcon";
+import PhotoIcon from '@heroicons/react/24/solid/PhotoIcon';
 
-export default function Dropzone({
-  func,
-}: {
+interface DropzoneProps {
+  // eslint-disable-next-line no-unused-vars
   func: (event?: any) => Promise<void> | void;
-}) {
+}
+
+export default function Dropzone({ func }: DropzoneProps) {
   return (
-    <div className="rounded-lg border-2 border-dashed p-4 py-8 relative flex flex-col justify-center items-center bg-accent-600/10 hover:bg-accent-600/30 hover:transition w-full space-y-4">
+    <div className='relative flex w-full flex-col items-center justify-center space-y-4 rounded-lg border-2 border-dashed bg-accent-600/10 p-4 py-8 hover:bg-accent-600/30 hover:transition'>
       <input
         onChange={(e) => func(e)}
-        accept="image/*"
-        type="file"
-        aria-label="image"
-        className="w-full absolute inset-0 z-[1] opacity-0 cursor-pointer"
+        accept='image/*'
+        type='file'
+        aria-label='image'
+        className='absolute inset-0 z-[1] w-full cursor-pointer opacity-0'
       />
-      <div className="grid items-center text-center gap-1">
+      <div className='grid items-center gap-1 text-center'>
         <PhotoIcon />
         <strong>Click to upload a file</strong>
         <span>or drag and drop</span>

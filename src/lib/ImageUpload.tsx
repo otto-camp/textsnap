@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 
 export async function ImageUpload({
   e,
@@ -23,20 +23,20 @@ export async function ImageUpload({
   const file = e.target.files![0];
   if (!file) return;
   const formData = new FormData();
-  formData.append("image", file);
+  formData.append('image', file);
 
   setLoading(true);
   setImage(file);
-  console.time("Response Timer");
-  await fetch(backend + language + "/image", {
-    method: "POST",
+  console.time('Response Timer');
+  await fetch(backend + language + '/image', {
+    method: 'POST',
     body: formData,
-    mode: "cors",
+    mode: 'cors',
   })
     .then((res) => {
       if (res.status !== 200) {
         setError(
-          "Image could not be converted to text. Are you sure the image is valid."
+          'Image could not be converted to text. Are you sure the image is valid.'
         );
         setLoading(false);
       } else {
@@ -50,5 +50,5 @@ export async function ImageUpload({
       setError(err);
       setLoading(false);
     });
-  console.timeEnd("Response Timer");
+  console.timeEnd('Response Timer');
 }

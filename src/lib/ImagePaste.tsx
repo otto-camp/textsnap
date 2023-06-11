@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 
 export async function ImagePaste({
   event,
@@ -22,20 +22,20 @@ export async function ImagePaste({
     return;
   }
 
-  if (item.kind === "file" && item.type.match("image/*")) {
+  if (item.kind === 'file' && item.type.match('image/*')) {
     const file = item.getAsFile();
     if (file) {
       const formData = new FormData();
-      formData.append("image", file);
+      formData.append('image', file);
 
       setLoading(true);
       setImage(file);
       console.log(language);
-      console.time("Response Timer");
-      await fetch(backend + language + "/image", {
-        method: "POST",
+      console.time('Response Timer');
+      await fetch(backend + language + '/image', {
+        method: 'POST',
         body: formData,
-        mode: "cors",
+        mode: 'cors',
       })
         .then((res) => {
           res.text().then((text) => {
@@ -48,7 +48,7 @@ export async function ImagePaste({
           setError(err);
           setLoading(false);
         });
-      console.timeEnd("Response Timer");
+      console.timeEnd('Response Timer');
     }
   }
 }

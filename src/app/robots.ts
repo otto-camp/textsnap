@@ -1,9 +1,9 @@
 export default function robots() {
   return {
     rules: {
-      userAgent: "*",
-      allow: "/",
+      userAgent: '*',
+      allow: '/',
     },
-    sitemap: "https://textsnap.vercel.app/sitemap.xml",
+    sitemap: 'https://textsnap.vercel.app/sitemap.xml',
   };
 }

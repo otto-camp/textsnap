@@ -1,12 +1,12 @@
-import React from "react";
-import { ButtonHTMLAttributes } from "react";
-import { twMerge } from "tailwind-merge";
+import React from 'react';
+import { ButtonHTMLAttributes } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary";
-  size?: "small" | "medium" | "large";
+  variant?: 'primary' | 'secondary';
+  size?: 'small' | 'medium' | 'large';
   color?: string;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   fullWidth?: boolean;
@@ -14,7 +14,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   uppercase?: boolean;
   compact?: boolean;
   loading?: boolean;
-  loaderPosition?: "left" | "right";
+  loaderPosition?: 'left' | 'right';
   loaderProps?: object;
   gradient?: string;
   classNames?: string;
@@ -23,36 +23,36 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   {
-    variant = "primary",
-    size = "medium",
-    color,
+    variant = 'primary',
+    size = 'medium',
+    // color,
     type,
     disabled,
     children,
     leftIcon,
     rightIcon,
     fullWidth,
-    radius = "rounded-lg",
-    uppercase,
+    radius = 'rounded-lg',
+    // uppercase,
     compact,
     loading,
     loaderPosition,
     loaderProps,
-    gradient,
+    // gradient,
     classNames,
-    unstyled,
+    // unstyled,
     ...others
   },
   ref
 ) => {
   const buttonVariant =
-    variant === "secondary" ? "bg-secondary-100" : "bg-primary-100";
+    variant === 'secondary' ? 'bg-secondary-100' : 'bg-primary-100';
   const buttonSize =
-    size === "small"
-      ? "px-4 py-2 text-sm"
-      : size === "large"
-      ? "px-6 py-3 text-lg"
-      : "px-5 py-3 text-base";
+    size === 'small'
+      ? 'px-4 py-2 text-sm'
+      : size === 'large'
+      ? 'px-6 py-3 text-lg'
+      : 'px-5 py-3 text-base';
 
   return (
     <button
@@ -60,24 +60,24 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
       type={type}
       disabled={disabled || loading}
       className={twMerge(
-        "inline-block",
-        fullWidth && "w-full",
+        'inline-block',
+        fullWidth && 'w-full',
         radius,
-        "transition-all duration-200 focus:outline-none",
+        'transition-all duration-200 focus:outline-none',
         buttonVariant,
         buttonSize,
-        compact ? "px-3 py-1" : "",
+        compact ? 'px-3 py-1' : '',
         classNames
       )}
       ref={ref}
     >
-      {loading && loaderPosition === "left" && (
+      {loading && loaderPosition === 'left' && (
         <span {...loaderProps}>Loading...</span>
       )}
       {leftIcon && <span>{leftIcon}</span>}
       {children}
       {rightIcon && <span>{rightIcon}</span>}
-      {loading && loaderPosition === "right" && (
+      {loading && loaderPosition === 'right' && (
         <span {...loaderProps}>Loading...</span>
       )}
     </button>

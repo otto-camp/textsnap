@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   Dispatch,
   SetStateAction,
-} from "react";
+} from 'react';
 
 interface OcrContextProps {
   imageText: string;
@@ -23,11 +23,11 @@ interface OcrContextProps {
 const OcrContext = createContext<OcrContextProps | undefined>(undefined);
 
 const OcrProvider = ({ children }: { children: ReactNode }) => {
-  const [imageText, setImageText] = useState("Waiting for your image...");
+  const [imageText, setImageText] = useState('Waiting for your image...');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [image, setImage] = useState<File | null>(null);
-  const [language, setLanguage] = useState("eng");
+  const [language, setLanguage] = useState('eng');
 
   const contextValue: OcrContextProps = {
     imageText,
@@ -50,7 +50,7 @@ const OcrProvider = ({ children }: { children: ReactNode }) => {
 const useOcrContext = (): OcrContextProps => {
   const context = useContext(OcrContext);
   if (!context) {
-    throw new Error("useOcrContext must be used within an OcrProvider");
+    throw new Error('useOcrContext must be used within an OcrProvider');
   }
   return context;
 };
