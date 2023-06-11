@@ -17,21 +17,22 @@ export async function ImagePaste({
   backend: string;
   language: string;
 }) {
+  console.time('Response Timer');
+
   const item = event.clipboardData?.items[0];
   if (!item) {
     return;
   }
-
   if (item.kind === 'file' && item.type.match('image/*')) {
     const file = item.getAsFile();
     if (file) {
       const formData = new FormData();
       formData.append('image', file);
 
+      setError('');
       setLoading(true);
       setImage(file);
       console.log(language);
-      console.time('Response Timer');
       await fetch(backend + language + '/image', {
         method: 'POST',
         body: formData,
@@ -48,6 +49,7 @@ export async function ImagePaste({
           setError(err);
           setLoading(false);
         });
+
       console.timeEnd('Response Timer');
     }
   }

@@ -69,7 +69,7 @@ export default function OcrImageUpload() {
   }, [imageUrl, sessionImageFile, language]);
 
   return (
-    <div className='space-y-4'>
+    <div className='space-y-4 md:space-y-8'>
       <Dropzone
         func={(e) =>
           ImageUpload({

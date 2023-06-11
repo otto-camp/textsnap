@@ -4,7 +4,7 @@ import HowToUseSection from '../components/sections/home/HowToUseSection';
 export default function Home() {
   return (
     <div>
-      <header className='container mx-auto mt-8 space-y-6 bg-gradient-radial text-center'>
+      <header className='md:space-y-18 container mx-auto mt-8 space-y-6 bg-gradient-radial text-center'>
         <div className='my-12 space-y-4 sm:space-y-8 md:my-16 md:space-y-16'>
           <h1 className='text-3xl font-black sm:text-4xl md:text-5xl lg:text-8xl'>
             Convert Images to Text within seconds

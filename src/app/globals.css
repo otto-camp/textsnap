@@ -7,7 +7,7 @@
 }
 
 .autocomplete-scrollbar::-webkit-scrollbar-track {
-  background-color: #d3d8dc;
+  background-color: #293434;
   border-radius: 9999px;
   -webkit-border-radius: 9999px;
   -moz-border-radius: 9999px;
@@ -16,7 +16,7 @@
 }
 
 .autocomplete-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #040607;
+  background-color: #e7e8e8;
   border-radius: 9999px;
   -webkit-border-radius: 9999px;
   -moz-border-radius: 9999px;
@@ -25,5 +25,5 @@
 }
 
 .autocomplete-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #1d2226;
+  background-color: #a0a5a5;
 }

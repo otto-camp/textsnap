@@ -17,17 +17,21 @@ export async function ImageUpload({
   backend: string;
   language: string;
 }) {
+  console.time('Response Timer');
+
   if (!e) {
     return;
   }
   const file = e.target.files![0];
   if (!file) return;
+
   const formData = new FormData();
   formData.append('image', file);
 
+  setError('');
   setLoading(true);
   setImage(file);
-  console.time('Response Timer');
+
   await fetch(backend + language + '/image', {
     method: 'POST',
     body: formData,
@@ -50,5 +54,6 @@ export async function ImageUpload({
       setError(err);
       setLoading(false);
     });
+
   console.timeEnd('Response Timer');
 }

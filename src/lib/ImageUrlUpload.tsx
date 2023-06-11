@@ -16,8 +16,12 @@ export async function ImageUrlUpload({
   language: string;
 }) {
   console.time('Response Timer');
+
+  setError('');
   setLoading(true);
+
   const url = imageUrl;
+
   await fetch(backend + language + '/image-url', {
     method: 'POST',
     body: JSON.stringify({ url }),
@@ -42,5 +46,6 @@ export async function ImageUrlUpload({
       setError(err);
       setLoading(false);
     });
+    
   console.timeEnd('Response Timer');
 }

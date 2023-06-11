@@ -4,6 +4,7 @@ import { useOcrContext } from '@/context/OcrContext';
 import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Select from './ui/Select';
+import { ChevronDown } from 'lucide-react';
 
 function TextContainer() {
   const { loading, imageText } = useOcrContext();
@@ -17,22 +18,19 @@ function TextContainer() {
   }
 
   return (
-    <div className='relative w-full'>
-      <div className='absolute right-2 top-2'>
-        <Select trigger='Get Text'>
-          <CopyToClipboard text={imageText} onCopy={handleCopyAlert}>
-            <button className='w-full cursor-pointer rounded-lg bg-primary-900/70 px-4 py-2 duration-200 hover:bg-primary-900/40'>
-              Copy Text
-            </button>
-          </CopyToClipboard>
-        </Select>
+    <div className='rounded-lg border-2 p-4'>
+      <div className='pb-2'>
+        <div className='flex justify-end'>
+          <Select trigger='Get Text' icon={<ChevronDown />}>
+            <CopyToClipboard text={imageText} onCopy={handleCopyAlert}>
+              <button className='w-full cursor-pointer rounded-lg bg-primary-900/70 px-4 py-2 duration-200 hover:bg-primary-900/40'>
+                {isCopied ? 'Copied' : 'Copy Text'}
+              </button>
+            </CopyToClipboard>
+          </Select>
+        </div>
       </div>
-      <div className='h-full w-full rounded-lg border-2 p-4'>
-        {isCopied ? (
-          <div className='rounded-lg bg-gray-700 p-4 text-center'>Copied</div>
-        ) : (
-          ''
-        )}
+      <div className='h-full min-h-[540px] w-full border-t pt-2'>
         {loading ? (
           <div className='flex h-full w-full items-center justify-center'>
             <svg

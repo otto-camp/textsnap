@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 export default function Navigation() {
   return (
-    <div>
-      <nav className='container mx-auto flex items-center justify-between border-b p-4'>
+    <div className='border-b'>
+      <nav className='container mx-auto flex items-center justify-between p-4'>
         <Link
           href='/'
           className='rounded-lg bg-transparent px-4 py-2 text-xl transition-all hover:bg-accent-700/20 sm:text-2xl md:text-3xl'

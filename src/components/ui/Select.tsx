@@ -1,18 +1,28 @@
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
+
+interface SelectProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  trigger: string;
+  icon?: React.ReactNode;
+}
 
 export default function Select({
   children,
   trigger,
-}: {
-  children: React.ReactNode;
-  trigger: string;
-}) {
+  className,
+  icon,
+}: SelectProps) {
   return (
-    <Menu as='div' className='relative inline-block text-left'>
-      <Menu.Button className='hover:bg-opacity/30 inline-flex w-full justify-center rounded-lg bg-secondary-100/20 px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-opacity-75'>
+    <Menu
+      as='div'
+      className={twMerge(className, 'relative inline-block text-left')}
+    >
+      <Menu.Button className='hover:bg-opacity/30 inline-flex w-full items-center justify-between gap-1 rounded-lg bg-secondary-100/20 px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-opacity-75'>
         {trigger}
+        {icon}
       </Menu.Button>
       <Transition
         as={Fragment}

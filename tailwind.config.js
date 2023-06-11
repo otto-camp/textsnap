@@ -1,14 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(50% 50% at 50% 50%,#1d2226 0,#040607 100%)'
+        'gradient-radial': 'radial-gradient(50% 50% at 50% 50%,#a55fa280 0,#040607 100%)'
       },
       animation: {
         text: 'text 10s ease infinite',
@@ -114,6 +112,6 @@ module.exports = {
       }
     },
     darkMode: 'class',
-    plugins: [],
+    plugins: [require("@tailwindcss/typography")],
   }
 }
