@@ -2,6 +2,7 @@
   "typescript.tsdk": "node_modules\\.pnpm\\typescript@5.0.4\\node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "cSpell.words": [
+    "barcodes",
     "howtouse",
     "nocache",
     "quoteless",

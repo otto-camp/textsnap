@@ -71,7 +71,7 @@ export default function RootLayout({
         }
       >
         <Navigation />
-        {children}
+        <div className='mt-32'>{children}</div>
         <Footer />
         <Analytics />
         <Script

@@ -5,7 +5,43 @@ module.exports = {
   ],
   theme: {
     extend: {
-      typography: {
+      typography: ({ theme }) => ({
+        dark: {
+          css: {
+            '--tw-prose-body': theme('colors.background.800'),
+            '--tw-prose-headings': theme('colors.background.900'),
+            '--tw-prose-lead': theme('colors.background.700'),
+            '--tw-prose-links': theme('colors.background.900'),
+            '--tw-prose-bold': theme('colors.background.900'),
+            '--tw-prose-counters': theme('colors.background.600'),
+            '--tw-prose-bullets': theme('colors.background.400'),
+            '--tw-prose-hr': theme('colors.background.300'),
+            '--tw-prose-quotes': theme('colors.background.900'),
+            '--tw-prose-quote-borders': theme('colors.background.300'),
+            '--tw-prose-captions': theme('colors.background.700'),
+            '--tw-prose-code': theme('colors.background.900'),
+            '--tw-prose-pre-code': theme('colors.text.100'),
+            '--tw-prose-pre-bg': theme('colors.background.900'),
+            '--tw-prose-th-borders': theme('colors.background.300'),
+            '--tw-prose-td-borders': theme('colors.background.200'),
+            '--tw-prose-invert-body': theme('colors.background.200'),
+            '--tw-prose-invert-headings': theme('colors.text.100'),
+            '--tw-prose-invert-lead': theme('colors.background.300'),
+            '--tw-prose-invert-links': theme('colors.text.100'),
+            '--tw-prose-invert-bold': theme('colors.text.100'),
+            '--tw-prose-invert-counters': theme('colors.background.400'),
+            '--tw-prose-invert-bullets': theme('colors.background.600'),
+            '--tw-prose-invert-hr': theme('colors.background.700'),
+            '--tw-prose-invert-quotes': theme('colors.text.100'),
+            '--tw-prose-invert-quote-borders': theme('colors.background.700'),
+            '--tw-prose-invert-captions': theme('colors.background.400'),
+            '--tw-prose-invert-code': theme('colors.text.100'),
+            '--tw-prose-invert-pre-code': theme('colors.background.300'),
+            '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
+            '--tw-prose-invert-th-borders': theme('colors.background.600'),
+            '--tw-prose-invert-td-borders': theme('colors.background.700'),
+          },
+        },
         DEFAULT: {
           css: {
             "code::before": {
@@ -22,7 +58,7 @@ module.exports = {
             "blockquote p:first-of-type::after": { content: "none" },
           },
         },
-      },
+      }),
       backgroundImage: {
         'gradient-radial': 'radial-gradient(50% 50% at 50% 50%,#a55fa280 0,#040607 100%)'
       },
@@ -130,6 +166,6 @@ module.exports = {
       }
     },
     darkMode: 'class',
-    plugins: [require("@tailwindcss/typography")],
-  }
+  },
+  plugins: [require('@tailwindcss/typography')],
 }

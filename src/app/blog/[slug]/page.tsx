@@ -11,8 +11,8 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className='min-h-screen bg-zinc-50'>
-      <article className='prose prose-zinc prose-quoteless mx-auto px-4 py-12'>
+    <div className='min-h-screen '>
+      <article className='prose prose-dark prose-quoteless mx-auto px-4 py-12'>
         <Mdx code={post.body.code} />
       </article>
     </div>

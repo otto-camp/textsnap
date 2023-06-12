@@ -30,6 +30,12 @@ export const Blog = defineDocumentType(() => ({
       type: "string",
       required: true,
     },
+    date: {
+      type: "date"
+    },
+    image: {
+      type: "image"
+    }
   },
   computedFields,
 }));
