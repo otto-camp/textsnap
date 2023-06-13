@@ -31,10 +31,15 @@ export const Blog = defineDocumentType(() => ({
       required: true,
     },
     date: {
-      type: "date"
+      type: "date",
+      required: true
     },
     image: {
       type: "image"
+    },
+    author: {
+      type: "string",
+      required: true
     }
   },
   computedFields,

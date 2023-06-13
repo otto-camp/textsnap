@@ -25,7 +25,7 @@ export default function Navigation() {
               : 'border-background-800/70 bg-background-200/30'
           }`}
         >
-          <div className='relative mx-auto max-w-7xl p-4 sm:px-6 lg:px-8'>
+          <div className='relative mx-auto container p-4 sm:px-6 lg:px-8'>
             <div className='absolute inset-y-0 right-4 flex items-center sm:hidden'>
               <Disclosure.Button className='inline-flex items-center justify-center rounded-md p-2 hover:bg-text-400/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-text-400'>
                 <span className='sr-only'>Open main menu</span>

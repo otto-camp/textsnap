@@ -74,19 +74,25 @@ export default function RootLayout({
         <div className='mt-32'>{children}</div>
         <Footer />
         <Analytics />
-        <Script
-          async
-          strategy='afterInteractive'
-          src='https://www.googletagmanager.com/gtag/js?id=G-NRXG6RMYXN'
-        />
-        <Script id='google-analytics' strategy='afterInteractive'>
-          {` 
+        {process.env.NODE_ENV === 'development' ? (
+          ''
+        ) : (
+          <>
+            <Script
+              async
+              strategy='afterInteractive'
+              src='https://www.googletagmanager.com/gtag/js?id=G-NRXG6RMYXN'
+            />
+            <Script id='google-analytics' strategy='afterInteractive'>
+              {` 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-NRXG6RMYXN');
             `}
-        </Script>
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

@@ -7,6 +7,11 @@ const nextConfig = {
     appDir: true,
     mdxRs: true
   },
+  images: {
+    domains:[
+      "raw.githubusercontent.com"
+    ]
+  }
 }
 
 module.exports = withContentlayer(nextConfig)

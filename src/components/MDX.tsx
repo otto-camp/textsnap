@@ -98,11 +98,14 @@ const components = {
     alt,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      className={clsx('rounded-md border border-zinc-200', className)}
+    <Image
+      className={clsx(
+        'max-5-xl mx-auto rounded-md border border-background-900/70 !relative',
+        className
+      )}
       alt={alt}
       {...props}
+      fill
     />
   ),
   hr: ({ ...props }) => (
