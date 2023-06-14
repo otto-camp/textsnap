@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { clsx } from '@/utils/clsx';
+import Toc from './Toc';
 
 const components = {
   h1: ({ className, ...props }) => (
@@ -162,6 +163,7 @@ const components = {
     />
   ),
   Image,
+  Toc
 };
 
 interface MdxProps {
@@ -172,7 +174,7 @@ export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <div className='mdx'>
+    <div className='mdx js-toc-content'>
       <Component components={components} />
     </div>
   );

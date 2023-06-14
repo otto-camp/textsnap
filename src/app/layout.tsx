@@ -44,7 +44,14 @@ export const metadata = {
     siteName: 'TextSnap',
     locale: 'en-US',
     type: 'website',
-    images: [{ url: '/website.webp', width: 1024, height: 1024 }],
+    images: [
+      {
+        url: '/website.webp',
+        width: 1024,
+        height: 1024,
+        alt: 'Convert Images to Text',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -54,6 +61,8 @@ export const metadata = {
     images: {
       url: '/website.webp',
       alt: 'Convert Images to Text',
+      width: 1024,
+      height: 1024,
     },
   },
 };

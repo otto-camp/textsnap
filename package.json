@@ -36,6 +36,7 @@
     "rehype-slug": "^5.1.0",
     "remark-gfm": "^3.0.1",
     "tailwind-merge": "^1.13.1",
+    "tocbot": "^4.21.0",
     "typescript": "5.0.4"
   },
   "devDependencies": {
