@@ -1,5 +1,5 @@
+import Article from '@/components/Article';
 import { allBlogs } from 'contentlayer/generated';
-import Link from 'next/link';
 
 export default function BlogPage() {
   const posts = allBlogs.sort(
@@ -8,14 +8,16 @@ export default function BlogPage() {
       new Date(a.date ?? Number.POSITIVE_INFINITY).getTime()
   );
   return (
-    <div>
-      {posts.map((p) => (
-        <Link href={`/blog/${p.slug}`} key={p.slug}>{
-          <div>
-            {p.title}
-          </div>
-        }</Link>
-      ))}
-    </div>
+    <main className='min-h-screen p-4 space-y-8 container mx-auto'>
+      <h1 className='text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl'>
+        Blog
+      </h1>
+      <hr/>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+        {posts.map((p) => (
+          <Article key={p.title} post={p} />
+        ))}
+      </div>
+    </main>
   );
 }

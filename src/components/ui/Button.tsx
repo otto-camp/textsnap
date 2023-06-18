@@ -25,22 +25,18 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   {
     variant = 'primary',
     size = 'medium',
-    // color,
-    type,
+    type = 'button',
     disabled,
     children,
     leftIcon,
     rightIcon,
     fullWidth,
     radius = 'rounded-lg',
-    // uppercase,
     compact,
     loading,
     loaderPosition,
     loaderProps,
-    // gradient,
     classNames,
-    // unstyled,
     ...others
   },
   ref

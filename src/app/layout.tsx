@@ -80,7 +80,7 @@ export default function RootLayout({
         }
       >
         <Navigation />
-        <div className='mt-32'>{children}</div>
+        <div className='mt-28'>{children}</div>
         <Footer />
         <Analytics />
         {process.env.NODE_ENV === 'development' ? (

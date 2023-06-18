@@ -1,10 +1,9 @@
 'use client';
 
 import { useOcrContext } from '@/context/OcrContext';
+import { downloadTxt } from '@/utils/downloadTxt';
 import { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import Select from './ui/Select';
-import { ChevronDown } from 'lucide-react';
 
 function TextContainer() {
   const { loading, imageText } = useOcrContext();
@@ -18,19 +17,25 @@ function TextContainer() {
   }
 
   return (
-    <div className='rounded-lg border-2 p-4'>
+    <div className='h-full rounded-lg border-2 p-4'>
       <div className='pb-2'>
-        <div className='flex justify-end'>
-          <Select trigger='Get Text' icon={<ChevronDown />}>
-            <CopyToClipboard text={imageText} onCopy={handleCopyAlert}>
-              <button className='w-full cursor-pointer rounded-lg bg-primary-900/70 px-4 py-2 duration-200 hover:bg-primary-900/40'>
-                {isCopied ? 'Copied' : 'Copy Text'}
-              </button>
-            </CopyToClipboard>
-          </Select>
+        <div className='flex justify-end gap-4'>
+          <button
+            onClick={() => {
+              downloadTxt(imageText, 'textsnap-text');
+            }}
+            className='cursor-pointer rounded-lg bg-primary-600/70 px-4 py-2 duration-200 hover:bg-primary-900/40'
+          >
+            Download Text
+          </button>
+          <CopyToClipboard text={imageText} onCopy={handleCopyAlert}>
+            <button className='cursor-pointer rounded-lg bg-primary-600/70 px-4 py-2 duration-200 hover:bg-primary-900/40'>
+              {isCopied ? 'Copied' : 'Copy Text'}
+            </button>
+          </CopyToClipboard>
         </div>
       </div>
-      <div className='h-full min-h-[540px] w-full border-t pt-2'>
+      <div className='border-t pt-2'>
         {loading ? (
           <div className='flex h-full w-full items-center justify-center'>
             <svg
@@ -55,7 +60,9 @@ function TextContainer() {
             </svg>
           </div>
         ) : (
-          <p data-test='text'>{imageText}</p>
+          <pre data-test='text' className='font-sans'>
+            {imageText}
+          </pre>
         )}
       </div>
     </div>

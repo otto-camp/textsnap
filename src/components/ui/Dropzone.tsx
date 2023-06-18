@@ -1,15 +1,22 @@
 import PhotoIcon from '@heroicons/react/24/solid/PhotoIcon';
+import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 
 interface DropzoneProps {
-  // eslint-disable-next-line no-unused-vars
-  func: (event?: any) => Promise<void> | void;
+  setImage: Dispatch<SetStateAction<File | null>>;
 }
 
-export default function Dropzone({ func }: DropzoneProps) {
+export default function Dropzone({ setImage }: DropzoneProps) {
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+
+    const file = e.target.files[0];
+
+    setImage(file);
+  };
   return (
     <div className='relative flex w-full flex-col items-center justify-center space-y-4 rounded-lg border-2 border-dashed bg-accent-600/10 p-4 py-8 hover:bg-accent-600/30 hover:transition'>
       <input
-        onChange={(e) => func(e)}
+        onChange={(e) => handleImageChange(e)}
         accept='image/*'
         type='file'
         aria-label='image'

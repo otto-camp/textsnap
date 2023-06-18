@@ -20,7 +20,7 @@ export default function Select({
       as='div'
       className={twMerge(className, 'relative inline-block text-left')}
     >
-      <Menu.Button className='hover:bg-opacity/30 inline-flex w-full items-center justify-between gap-1 rounded-lg bg-secondary-100/20 px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-opacity-75'>
+      <Menu.Button className='hover:bg-opacity/30 inline-flex w-full items-center justify-between gap-1 rounded-lg bg-primary-200/40 px-4 py-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-300 focus-visible:ring-opacity-75'>
         {trigger}
         {icon}
       </Menu.Button>

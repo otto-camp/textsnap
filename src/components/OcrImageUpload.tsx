@@ -1,101 +1,67 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { ImageUpload } from '@/lib/ImageUpload';
-import { ImageUrlUpload } from '@/lib/ImageUrlUpload';
-import { ImagePaste } from '@/lib/ImagePaste';
 import { useOcrContext } from '@/context/OcrContext';
 import Dropzone from './ui/Dropzone';
-import Input from './ui/Input';
+import { createWorker } from 'tesseract.js';
+import Button from './ui/Button';
+import { useEffect } from 'react';
 
 export default function OcrImageUpload() {
-  const backend = process.env.NEXT_PUBLIC_BACKEND_URL!;
-  const [imageUrl, setImageUrl] = useState('');
-  const { language, setError, setLoading, setImageText, setImage } =
+  const { language, setError, setLoading, setImageText, image, setImage } =
     useOcrContext();
 
-  const sessionImageFile =
-    typeof window !== 'undefined' && sessionStorage.getItem('imageFile');
-  const sessionImageUrl =
-    typeof window !== 'undefined' && sessionStorage.getItem('imageUrl');
+  // const sessionImageFile =
+  //   typeof window !== 'undefined' && sessionStorage.getItem('imageFile');
+  // const sessionImageUrl =
+  //   typeof window !== 'undefined' && sessionStorage.getItem('imageUrl');
 
-  function handlePaste(event: ClipboardEvent) {
-    ImagePaste({
-      event,
-      setLoading,
-      setImage,
-      backend,
-      language,
-      setImageText,
-      setError,
-    });
+  async function doOcr() {
+    console.time('ocr');
+    if (!image) {
+      setError('Enter an image');
+    } else {
+      setLoading(true);
+      const worker = await createWorker();
+      await worker.loadLanguage(language);
+      await worker.initialize(language);
+
+      const {
+        data: { text },
+      } = await worker.recognize(image);
+      setImageText(text);
+      setLoading(false);
+
+      await worker.terminate();
+    }
+    console.timeEnd('ocr');
   }
+
   useEffect(() => {
-    if (sessionImageFile) {
-      setImageUrl(sessionImageFile);
-      if (imageUrl) {
-        ImageUrlUpload({
-          imageUrl,
-          backend,
-          language,
-          setError,
-          setLoading,
-          setImageText,
-        });
-        sessionStorage.removeItem('imageFile');
-      }
-    }
-    if (sessionImageUrl) {
-      setImageUrl(sessionImageUrl);
-      if (imageUrl) {
-        ImageUrlUpload({
-          imageUrl,
-          backend,
-          language,
-          setError,
-          setLoading,
-          setImageText,
-        });
-
-        sessionStorage.removeItem('imageUrl');
+    async function pasteOcr(event: ClipboardEvent) {
+      const item = event.clipboardData?.items[0];
+      if (!item) {
+        setError('Last copied item is not an image');
+      } else {
+        if (item.kind === 'file' && item.type.match('image/*')) {
+          const file = item.getAsFile();
+          setImage(file);
+        }
       }
     }
 
-    document.addEventListener('paste', handlePaste);
+    document.addEventListener('paste', pasteOcr);
     return () => {
-      document.removeEventListener('paste', handlePaste);
+      document.removeEventListener('paste', pasteOcr);
     };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [imageUrl, sessionImageFile, language]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className='space-y-4 md:space-y-8'>
-      <Dropzone
-        func={(e) =>
-          ImageUpload({
-            e,
-            setLoading,
-            setImage,
-            backend,
-            language,
-            setError,
-            setImageText,
-          })
-        }
-      />
-      <Input
-        onChange={(e) => setImageUrl(e)}
-        onClick={() =>
-          ImageUrlUpload({
-            imageUrl,
-            backend,
-            language,
-            setError,
-            setLoading,
-            setImageText,
-          })
-        }
-      />
+      <Dropzone setImage={setImage} />
+      {/* <Input setImage={setImageTemp} /> */}
+      <Button fullWidth classNames='hover:bg-primary-400' onClick={doOcr}>
+        Convert
+      </Button>
     </div>
   );
 }

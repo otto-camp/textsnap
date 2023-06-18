@@ -83,7 +83,7 @@ export default async function BlogPost({ params }: Params) {
               </span>{' '}
               minutes
             </div>
-            <time>{date}</time>
+            <time dateTime={date}>{date}</time>
             <span className='font-bold'>{post.author}</span>
           </div>
         </div>

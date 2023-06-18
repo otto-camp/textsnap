@@ -25,7 +25,7 @@ function Badge({
   rightSection,
   children,
 }: BadgeProps) {
-  let badgeStyle = `inline-block px-2 py-1 rounded-md ${size}`;
+  let badgeStyle = `inline-flex items-center justify-center px-2 py-1 text-sm rounded-md ${size}`;
 
   if (variant === 'light') {
     badgeStyle += ` ${color}`;
@@ -43,9 +43,9 @@ function Badge({
 
   return (
     <span className={badgeStyle}>
-      {leftSection && <span className='mr-1'>{leftSection}</span>}
+      {leftSection && <span>{leftSection}</span>}
       {children}
-      {rightSection && <span className='ml-1'>{rightSection}</span>}
+      {rightSection && <span>{rightSection}</span>}
     </span>
   );
 }
