@@ -7,9 +7,40 @@ import { useOcrContext } from '@/context/OcrContext';
 import AutoComplete from '@/components/ui/AutoComplete';
 import { languages } from '@/constants/Languages';
 import Image from 'next/image';
+import Button from '@/components/ui/Button';
+import { createWorker } from 'tesseract.js';
 
 export default function OcrSection() {
-  const { error, setLanguage, image } = useOcrContext();
+  const {
+    error,
+    setLanguage,
+    image,
+    setError,
+    setLoading,
+    language,
+    setImageText,
+  } = useOcrContext();
+
+  async function doOcr() {
+    console.time('ocr');
+    if (!image) {
+      setError('Enter an image');
+    } else {
+      setLoading(true);
+      const worker = await createWorker();
+      await worker.loadLanguage(language);
+      await worker.initialize(language);
+
+      const {
+        data: { text },
+      } = await worker.recognize(image);
+      setImageText(text);
+      setLoading(false);
+
+      await worker.terminate();
+    }
+    console.timeEnd('ocr');
+  }
 
   return (
     <main className='container mx-auto min-h-screen'>
@@ -24,6 +55,9 @@ export default function OcrSection() {
         <div className='-mt-2 mb-4 space-y-4 md:space-y-8'>
           <AutoComplete setOption={setLanguage} options={languages} />
           <OcrImageUpload />
+          <Button fullWidth classNames='hover:bg-primary-400' onClick={doOcr}>
+            Convert
+          </Button>
           {image && (
             <div className='flex flex-wrap gap-2'>
               <Image

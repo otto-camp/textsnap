@@ -101,7 +101,7 @@ const components = {
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <Image
       className={clsx(
-        'max-5-xl mx-auto rounded-md border border-background-900/70 !relative',
+        'max-5-xl !relative mx-auto rounded-md border border-background-900/70',
         className
       )}
       alt={alt}
@@ -163,7 +163,7 @@ const components = {
     />
   ),
   Image,
-  Toc
+  Toc,
 };
 
 interface MdxProps {

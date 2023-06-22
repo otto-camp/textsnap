@@ -8,12 +8,12 @@ export default function BlogPage() {
       new Date(a.date ?? Number.POSITIVE_INFINITY).getTime()
   );
   return (
-    <main className='min-h-screen p-4 space-y-8 container mx-auto'>
+    <main className='container mx-auto min-h-screen space-y-8 p-4'>
       <h1 className='text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl'>
         Blog
       </h1>
-      <hr/>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+      <hr />
+      <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {posts.map((p) => (
           <Article key={p.title} post={p} />
         ))}

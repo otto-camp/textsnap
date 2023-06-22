@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 /**
  * This is a custom React hook that uses the IntersectionObserver API to detect when an element is

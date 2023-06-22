@@ -60,9 +60,7 @@ function TextContainer() {
             </svg>
           </div>
         ) : (
-          <pre data-test='text' className='font-sans'>
-            {imageText}
-          </pre>
+          <p data-test='text'>{imageText}</p>
         )}
       </div>
     </div>
