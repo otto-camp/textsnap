@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.autocomplete-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.autocomplete-scrollbar::-webkit-scrollbar-track {
+  background-color: #293434;
+  border-radius: 9999px;
+  -webkit-border-radius: 9999px;
+  -moz-border-radius: 9999px;
+  -ms-border-radius: 9999px;
+  -o-border-radius: 9999px;
+}
+
+.autocomplete-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e7e8e8;
+  border-radius: 9999px;
+  -webkit-border-radius: 9999px;
+  -moz-border-radius: 9999px;
+  -ms-border-radius: 9999px;
+  -o-border-radius: 9999px;
+}
+
+.autocomplete-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a5a5;
+}
