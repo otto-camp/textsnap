@@ -23,7 +23,7 @@ const data = [
 
 export default function FeaturesSection() {
   return (
-    <section className='container mx-auto space-y-10'>
+    <section className='container mx-auto space-y-10 px-4'>
       <div className='grid grid-cols-1 gap-4 px-4 lg:grid-cols-2 lg:gap-8'>
         <h2 className='text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl'>
           Specially created for <span className='text-primary-100'>you</span>
@@ -52,7 +52,7 @@ export default function FeaturesSection() {
               height={576}
               className='mx-auto rounded-xl object-cover'
             />
-            <div className='flex flex-col gap-6 justify-evenly'>
+            <div className='flex flex-col justify-evenly gap-6'>
               <h3 className='text-xl font-bold md:text-2xl'>{d.title}</h3>
               <p className='leading-7'>{d.description}</p>
             </div>

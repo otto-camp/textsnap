@@ -1,15 +1,15 @@
 'use client';
 
 import useIntersect from '@/hooks/useIntersect';
+import { cn } from '@/utils/cn';
 import { Disclosure } from '@headlessui/react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useRef } from 'react';
 
 const navigation = [
-  { name: 'Image Text Converter', href: '/image-text-converter' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'How To Use', href: '/how-to-use' },
+  { name: 'Blog', href: '/blog', cta: false },
+  { name: 'Start Converting', href: '/image-text-converter', cta: true },
 ];
 
 export default function Navigation() {
@@ -42,12 +42,15 @@ export default function Navigation() {
                 </Link>
               </div>
               <div className='hidden sm:ml-6 sm:flex sm:justify-end'>
-                <div className='flex gap-4'>
+                <div className='flex items-center gap-4'>
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className='text-lg font-medium text-text-100 duration-150 hover:text-text-300'
+                      className={cn(
+                        'rounded-lg text-lg font-medium text-white duration-150 hover:text-text-100',
+                        item.cta && 'bg-primary-200 px-4 py-2'
+                      )}
                     >
                       {item.name}
                     </Link>
@@ -64,7 +67,10 @@ export default function Navigation() {
                   key={item.name}
                   as={Link}
                   href={item.href}
-                  className='block rounded-lg border border-transparent px-3 py-2 font-medium text-text-100 transition-all duration-300 hover:border-text-100'
+                  className={cn(
+                    'block rounded-lg border border-transparent px-3 py-2 font-medium text-white transition-all duration-300 hover:border-white',
+                    item.cta && 'bg-primary-200'
+                  )}
                 >
                   {item.name}
                 </Disclosure.Button>
