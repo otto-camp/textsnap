@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Badge from '../components/ui/Badge';
 import Image from 'next/image';
 import GetStartedSection from './GetStartedSection';
+import HowToUseSection from './HowToUseSection';
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
 
       <FeaturesSection />
       <GetStartedSection />
+      <HowToUseSection />
     </main>
   );
 }

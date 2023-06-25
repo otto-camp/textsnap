@@ -9,10 +9,9 @@ export default function BlogPage() {
   );
   return (
     <main className='container mx-auto min-h-screen space-y-8 p-4'>
-      <h1 className='text-4xl font-bold sm:text-5xl md:text-6xl lg:text-7xl'>
-        Blog
+      <h1 className='box-border border-y border-white/50 py-8 text-center text-6xl font-bold sm:text-7xl md:text-8xl lg:text-9xl'>
+        THE BLOG
       </h1>
-      <hr />
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {posts.map((p) => (
           <Article key={p.title} post={p} />

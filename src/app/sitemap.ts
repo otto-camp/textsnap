@@ -8,7 +8,7 @@ export default function sitemap() {
     lastModified: new Date(),
   }));
 
-  const routes = ['', 'image-text-converter','blog'].map((url) => ({
+  const routes = ['', 'image-text-converter', 'blog'].map((url) => ({
     url: `https://textsnap.vercel.app/${url}`,
     lastModified: new Date(),
   }));
