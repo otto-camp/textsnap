@@ -5,8 +5,10 @@ import OcrSection from './OcrSection';
 
 export default function Page() {
   return (
-    <OcrProvider>
-      <OcrSection />
-    </OcrProvider>
+    <>
+      <OcrProvider>
+        <OcrSection />
+      </OcrProvider>
+    </>
   );
 }

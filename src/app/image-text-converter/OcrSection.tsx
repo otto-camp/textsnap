@@ -8,7 +8,7 @@ import AutoComplete from '@/components/ui/AutoComplete';
 import { languages } from '@/constants/Languages';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
-import { createWorker } from 'tesseract.js';
+import ImageFetch from '@/libs/ImageFetch';
 
 export default function OcrSection() {
   const {
@@ -20,26 +20,26 @@ export default function OcrSection() {
     language,
     setImageText,
   } = useOcrContext();
+  const backend = process.env.NEXT_PUBLIC_BACKEND_URL!;
 
-  async function doOcr() {
-    console.time('ocr');
-    if (!image) {
-      setError('Enter an image');
-    } else {
-      setLoading(true);
-      const worker = await createWorker();
-      await worker.loadLanguage(language);
-      await worker.initialize(language);
+  async function fetchOcr() {
+    if (!image) setError('You need to enter an image');
 
-      const {
-        data: { text },
-      } = await worker.recognize(image);
-      setImageText(text);
-      setLoading(false);
+    const formData = new FormData();
+    formData.append('image', image as Blob);
 
-      await worker.terminate();
-    }
-    console.timeEnd('ocr');
+    setLoading(true);
+    
+    console.time('fetch');
+    await ImageFetch({
+      backend,
+      language,
+      formData,
+      setError,
+      setImageText,
+      setLoading,
+    });
+    console.timeEnd('fetch');
   }
 
   return (
@@ -55,7 +55,11 @@ export default function OcrSection() {
         <div className='-mt-2 mb-4 space-y-4 md:space-y-8'>
           <AutoComplete setOption={setLanguage} options={languages} />
           <OcrImageUpload />
-          <Button fullWidth classNames='hover:bg-primary-400' onClick={doOcr}>
+          <Button
+            fullWidth
+            classNames='hover:bg-primary-400'
+            onClick={fetchOcr}
+          >
             Convert
           </Button>
           {image && (
