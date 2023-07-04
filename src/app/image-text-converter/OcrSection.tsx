@@ -43,7 +43,7 @@ export default function OcrSection() {
   }
 
   return (
-    <main className='container mx-auto min-h-screen'>
+    <div className='container mx-auto min-h-screen'>
       {error ? (
         <div className='container mx-auto mb-8'>
           <Error />
@@ -77,6 +77,6 @@ export default function OcrSection() {
           <TextContainer />
         </div>
       </div>
-    </main>
+    </div>
   );
 }

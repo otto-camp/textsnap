@@ -1,6 +1,45 @@
 import Article from '@/components/Article';
 import { allBlogs } from 'contentlayer/generated';
 
+const title = 'The Blog - TextSnap';
+const description =
+  'Stay updated with the latest articles and updates from the TextSnap blog. Discover tips, tutorials, and news related to image-to-text conversion, OCR technology, and productivity.';
+
+export const metadata = {
+  title: title,
+  description: description,
+  keywords: [
+    'TextSnap blog',
+    'blog articles',
+    'latest updates',
+    'image-to-text conversion',
+    'OCR technology',
+    'productivity tips',
+    'tutorial guides',
+    'technology news',
+    'text recognition',
+    'data extraction',
+    'image analysis',
+    'document processing',
+    'text extraction tools',
+    'data digitization',
+    'efficient workflows',
+    'text recognition software',
+    'OCR advancements',
+    'document automation',
+    'text-to-speech',
+    'image processing techniques',
+  ],
+  openGraph: {
+    title: title,
+    description: description,
+  },
+  twitter: {
+    title: title,
+    description,
+  },
+};
+
 export default function BlogPage() {
   const posts = allBlogs.sort(
     (a, b) =>

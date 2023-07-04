@@ -35,7 +35,8 @@ export const Blog = defineDocumentType(() => ({
       required: true
     },
     image: {
-      type: "image"
+      type: "string",
+      required: true
     },
     author: {
       type: "string",

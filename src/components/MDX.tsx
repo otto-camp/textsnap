@@ -101,7 +101,7 @@ const components = {
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <Image
       className={cn(
-        'max-5-xl !relative mx-auto rounded-md border border-background-900/70',
+        'max-5-xl !relative mx-auto rounded-md',
         className
       )}
       alt={alt}

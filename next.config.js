@@ -8,8 +8,10 @@ const nextConfig = {
     mdxRs: true
   },
   images: {
-    domains:[
-      "raw.githubusercontent.com"
+    domains: [
+      "raw.githubusercontent.com",
+      "drive.google.com",
+      "res.cloudinary.com"
     ]
   }
 }

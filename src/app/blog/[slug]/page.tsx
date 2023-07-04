@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       publishedTime: post.date,
       section: 'Technology',
       images: {
-        url: '/convert-images-to-text.webp',
+        url: post.image!,
         width: 1024,
         height: 1024,
         alt: post.title,
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       title: post.title,
       description: post.description,
       images: {
-        url: '/convert-images-to-text.webp',
+        url: post.image!,
         alt: post.title,
         width: 1024,
         height: 1024,
